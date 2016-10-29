@@ -58,7 +58,7 @@
 				processData : false,
 				contentType : false,
 			}).then(function (data) {
-				return data;
+				return 'http://ofp6fnkhe.bkt.clouddn.com/' + data.key;
 			})
 		})
 	}
