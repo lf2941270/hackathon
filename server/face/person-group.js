@@ -7,6 +7,9 @@ module.exports = {
 			"userData":"user-provided data attached to the person group"
 		})
 	},
+	delete: function () {
+		return request.delete('/persongroups/group')
+	},
 	getAll: function () {
 		return request.get('/persongroups')
 	},

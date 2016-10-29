@@ -50,10 +50,10 @@
 
 			formData.append('key', data.key);
 			formData.append('token', data.token);
-			formData.append('file', dataURItoBlob(aCanvas.toDataURL('image/png')));
+			formData.append('file', dataURItoBlob(aCanvas.toDataURL('image/jpeg', 0.85)));
 			return $.ajax({
 				type : 'POST',
-				url : 'http://up-z1.qiniu.com/',
+				url : 'https://up-z1.qbox.me',
 				data : formData,
 				processData : false,
 				contentType : false,

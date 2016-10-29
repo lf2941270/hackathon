@@ -3,8 +3,15 @@ var views = require('co-views');
 var koa = require('koa');
 var app = module.exports = koa();
 var bodyparser = require('koa-bodyparser')();
-const http = require('http');
-var server = http.createServer(app.callback());
+var fs = require('fs');
+const https = require('https');
+var server = https.createServer({
+	key: fs.readFileSync('/usr/local/etc/nginx/afan_nopass.key'),
+	cert: fs.readFileSync('/usr/local/etc/nginx/afan.crt'),
+	//ca: fs.readFileSync('./test_ca.crt'),
+	requestCert: false,
+	rejectUnauthorized: false
+}, app.callback());
 require('./socketio')(server)
 // setup views, appending .ejs
 // when no extname is given to render()

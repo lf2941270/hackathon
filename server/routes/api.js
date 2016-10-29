@@ -1,10 +1,16 @@
 'use strict';
-// 3rd party
+const qiniu = require("qiniu");
+const util = require('util');
+const uuid = require('uuid');
+const _ = require('lodash')
 const apiRouter = require('koa-router')({
 	prefix: '/api'
 });
-const qiniu = require("qiniu");
-const util = require('util');
+
+const app = require('../app');
+const face = require('../face');
+const fake = require('../fake/fake')
+app.context.cache = {};
 apiRouter.get('/upload_token', function * () {
 
 	//需要填写你的 Access Key 和 Secret Key
@@ -30,10 +36,23 @@ apiRouter.get('/upload_token', function * () {
 		key: key
 	};
 })
+
+
 apiRouter.post('/order', function *() {
 	var order = this.request.body;
-	order.id = order.id || Math.random(); //todo uuid
-	process.socket.emit('order', order.id)
+	order = fake.generateFakeOrder(order)
+	console.log(order)
+	this.app.context.cache[order.orderNumber] = order;
+	process.socket.emit('order', order)
+	this.set({'Access-Control-Allow-Origin': '*'});
+	this.body = 'success'
+})
+apiRouter.get('/order', function *() {
+	this.body = new Date().getTime()
+})
+apiRouter.post('/pic', function *() {
+	console.log('process image : ', this.request.body.url, 'orderId : ', this.request.body.orderId)
+	yield face.process(this.request.body.url, this.request.body.orderId)
 	this.body = 'success'
 })
 module.exports = apiRouter;
