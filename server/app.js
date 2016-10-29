@@ -6,7 +6,8 @@ var app = module.exports = koa();
 // setup views, appending .ejs
 // when no extname is given to render()
 
-app.use(require('./routes').routes());
+app.use(require('./routes/api').routes());
+app.use(require('./routes/frontend').routes());
 app.use(require('koa-static')('./client/assets'));
 if (require.main === module) {
 	app.listen(3000, function() {
