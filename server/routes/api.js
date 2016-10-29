@@ -4,7 +4,7 @@ const apiRouter = require('koa-router')({
 	prefix: '/api'
 });
 const qiniu = require("qiniu");
-
+const util = require('util');
 apiRouter.get('/upload_token', function * () {
 
 	//需要填写你的 Access Key 和 Secret Key
@@ -29,5 +29,11 @@ apiRouter.get('/upload_token', function * () {
 		token: token,
 		key: key
 	};
+})
+apiRouter.post('/order', function *() {
+	var order = this.request.body;
+	order.id = order.id || Math.random(); //todo uuid
+	process.socket.emit('order', order.id)
+	this.body = 'success'
 })
 module.exports = apiRouter;
