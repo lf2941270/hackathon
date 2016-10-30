@@ -1,6 +1,6 @@
 const uuid = require('uuid')
 const _ = require('lodash')
-require('./fakeData')()
+//require('./fakeData')()
 exports.generateFakeOrder = function (order, createTime) {
 	order = order || {}
 	order.orderNumber = order.orderNumber || uuid.v4();

@@ -142,23 +142,63 @@ body.page-login{
         background: #eee;
         overflow: hidden;
         padding: 20px;
-        .box{
-            width: 32%;
-            padding: 25px;
-            margin-right: 4px;
-            border-bottom: 3px solid #ccc;
-            background: #fff;
-            display: inline-block;
-            img{
-                float: left;
-                margin-right: 16px;
+        height: calc(~'100vh - 60px');
+
+        .overview {
+            .box{
+                width: 32%;
+                padding: 25px;
+                margin-right: 4px;
+                border-bottom: 3px solid #ccc;
+                background: #fff;
+                display: inline-block;
+                img{
+                    float: left;
+                    margin-right: 16px;
+                }
+                .info{
+                    color: #333;
+                    padding-top: 10px;
+                    .num {
+                        margin-top:30px;
+                        font-size: 18px;
+                    }
+                }
             }
-            .info{
-                color: #333;
-                padding-top: 10px;
-                .num {
-                    margin-top:30px;
-                    font-size: 18px;
+        }
+        .rank{
+            margin-top: 28px;
+            background: #fff;
+            h2{
+                padding: 10px;
+                font-size: 18px;
+                border-bottom: 3px solid #ccc;
+
+            }
+            .wrap{
+                padding: 40px 20px;
+                li{
+                    display: inline-block;
+                    height: 220px;
+                    width: 32%;
+                    margin-right: 1%;
+                    background: #f4a727;
+                    position: relative;
+                    .ranking{
+                        position: absolute;
+                        top: 8px;
+                        left: 8px;
+                        color: #fff;
+                        font-size: 16px;
+                    }
+                    .avatar{
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50%;
+                        background: #fff;
+                        overflow: hidden;
+                        margin: 20px auto;
+                    }
                 }
             }
         }

@@ -2,7 +2,7 @@ var socket = io.connect('//');
 
 socket.on('fakeOrder', function (data) {
 	function fake() {
-		console.log(data.orderId, '~~~~~~~~1212312~~~~~')
+		console.log(data.orderId)
 
 		$.post('/api/pic', {
 			url: data.url,
