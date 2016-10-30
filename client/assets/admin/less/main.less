@@ -1,5 +1,15 @@
 *{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+.clearfix{
+    &:before{
+        content: '';
+        clear: both;
+        display: table;
+    }
 }
 html{
     height: 100%;
@@ -11,7 +21,7 @@ body.page-login{
     .btn{
         display: block;
         margin: 20px auto;
-        width: 320px;
+        width: 300px;
         height: 36px;
         line-height: 36px;
         vertical-align: middle;
@@ -75,3 +85,82 @@ body.page-login{
     }
 }
 
+.page-index{
+    header{
+        height: 62px;
+        border-bottom: 5px solid #3bb7ad;
+        background-image: linear-gradient(to bottom, #fff 0%, #d8d8d8 100%);
+        .logo{
+            width: 186px;
+            height: 100%;
+            float: left;
+        }
+        .welcome{
+            width: 300px;
+            height: 100%;
+            padding-left: 40px;
+            float: left;
+            line-height: 60px;
+            color: #666;
+            font-size: 14px;
+        }
+    }
+    .nav-left{
+        width: 186px;
+        height: calc(~'100vh - 60px');
+        background: #33363f;
+        float: left;
+        li{
+            height: 50px;
+            line-height: 50px;
+            padding-left: 20px;
+            border-bottom: 1px solid #242730;
+            border-top: 1px solid #4e515a;
+            color: #8f9190;
+            font-size: 16px;
+            cursor: pointer;
+            &.active{
+                background: linear-gradient(to bottom, #33363f 0%, #1d212d 100%);
+                color: #41c7be;
+            }
+            *{
+                vertical-align: middle;
+
+            }
+            img{
+                margin-right:20px;
+            }
+            &:nth-child(1){
+                border-top-color: transparent;
+            }
+            &:nth-last-child(1) {
+                border-bottom-color: transparent;
+            }
+        }
+    }
+    .content{
+        background: #eee;
+        overflow: hidden;
+        padding: 20px;
+        .box{
+            width: 32%;
+            padding: 25px;
+            margin-right: 4px;
+            border-bottom: 3px solid #ccc;
+            background: #fff;
+            display: inline-block;
+            img{
+                float: left;
+                margin-right: 16px;
+            }
+            .info{
+                color: #333;
+                padding-top: 10px;
+                .num {
+                    margin-top:30px;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}

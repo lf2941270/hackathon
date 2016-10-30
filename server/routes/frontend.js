@@ -18,6 +18,7 @@ router.get('/', function * () {
 	if(!this.session.login) {
 		return this.redirect('/login')
 	}
+
 	this.body = yield render('index', {})
 });
 router.get('/login', function * () {

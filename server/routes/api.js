@@ -3,6 +3,8 @@ const qiniu = require("qiniu");
 const util = require('util');
 const uuid = require('uuid');
 const _ = require('lodash')
+const request = require('koa-request');
+
 const apiRouter = require('koa-router')({
 	prefix: '/api'
 });
@@ -74,5 +76,14 @@ apiRouter.post('/login', function *() {
 	} else {
 		this.body = {error: '账号或密码不正确'}
 	}
+})
+
+apiRouter.get('/todayInfo', function *() {
+	var todayInfo = yield request({
+		url: 'http://192.168.191.3:8080/data/todayInfo.do',
+		method: 'get'
+	})
+	console.log(todayInfo.body)
+	this.body = todayInfo.body;
 })
 module.exports = apiRouter;

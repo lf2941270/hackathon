@@ -6,8 +6,50 @@
     <link rel="stylesheet" href="/styles/_generated/sprite.css">
     <link rel="stylesheet" href="/styles/main.css">
 </head>
-<body>
+<body class="page-index">
+<header class="clearfix">
+    <div class="logo"><img src="/images/logo.png" alt=""></div>
+    <div class="welcome">欢迎登录,admin用户</div>
+    <!--<a href="/logout" class="logout">退出登录</a>-->
+</header>
+<div class="container clearfix">
+    <ul class="nav-left">
+        <li class="active" data-target="home"><img class="home" src="/images/home-active.png"  alt="">主页</li>
+        <li class="" data-target="table"><img class="table" src="/images/table.png" alt="">报表</li>
+        <li class="" data-target="customer"><img class="customer" src="/images/customer.png" alt="">客户</li>
+    </ul>
+    <div class="content" data-route="home">
+        <div class="overview">
+            <div class="box clearfix">
+                <img src="/images/today.png" alt="">
+                <div class="info">
+                    <p>今日熟客</p>
+                    <p class="num todayVIPCount"></p>
+                </div>
+            </div>
+            <div class="box clearfix">
+                <img src="/images/total.png" alt="">
+                <div class="info">
+                    <p>熟客总数</p>
+                    <p class="num totalVIPCount"></p>
+                </div>
+            </div>
+            <div class="box clearfix">
+                <img src="/images/money.png" alt="">
+                <div class="info">
+                    <p>周营业额</p>
+                    <p class="num todayIncome"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content" data-route="table" style="display: none;">
 
+    </div>
+    <div class="content" data-route="customer" style="display: none;">
+
+    </div>
+</div>
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/js/bundle.js"></script>
 </body>
