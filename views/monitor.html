@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟下单</title>
+</head>
+<body>
+<style>
+    html, body {
+        width: 100%;
+        height: 100%;
+        background: #222;
+    }
+
+    .btn {
+        position: relative;
+        top: 50%;
+        margin: -20px auto;
+        width: 200px;
+        height: 40px;
+        line-height: 40px;
+        background: #609;
+        color: #fff;
+        font-size: 24px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+</style>
+
+<div class="btn">模拟下单请求</div>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+    $('.btn').on('click', function () {
+        $.post('/api/order', {})
+    })
+</script>
+</body>
+</html>

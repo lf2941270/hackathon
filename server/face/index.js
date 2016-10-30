@@ -68,16 +68,21 @@ exports.process = function (url, orderId) {
 		}
 		console.log(detectData)
 		var personCount = detectData.length;
-
+		if(personCount === 0) {
+			process.socket.emit('detect', {msg: 'no face'})
+		}
 		personCount && face.identify({
 			faceIds: [_.sortBy(detectData, function (item) {
 				return Math.abs((item.faceRectangle.left + item.faceRectangle.width / 2) / conf.camera.width - 0.5)
 			})[0].faceId]
 		}).then(function (data) {
 			if (data) {
+				process.socket.emit('identify', {type: 'old', data: data, detectData: detectData, url: url, personCount: personCount})
 				storage(data, detectData, orderId, url, personCount);
 			} else {
 				person.create('group', detectData[0].faceId).then(function (data) {
+					process.socket.emit('identify', {type: 'new', data: data, detectData: detectData, url: url, personCount: personCount})
+
 						storage(data, detectData, orderId, url);
 						return person.addFace({
 							personGroupId: 'group',

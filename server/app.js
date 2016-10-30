@@ -6,8 +6,8 @@ var bodyparser = require('koa-bodyparser')();
 var fs = require('fs');
 const https = require('https');
 var server = https.createServer({
-	key: fs.readFileSync('/usr/local/etc/nginx/afan_nopass.key'),
-	cert: fs.readFileSync('/usr/local/etc/nginx/afan.crt'),
+	key: fs.readFileSync('./afan_nopass.key'),
+	cert: fs.readFileSync('./afan.crt'),
 	//ca: fs.readFileSync('./test_ca.crt'),
 	requestCert: false,
 	rejectUnauthorized: false

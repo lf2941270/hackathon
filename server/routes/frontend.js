@@ -34,5 +34,8 @@ router.get('/order', function * () {
 	this.body = yield render('order', {});
 });
 
+router.get('/monitor', function * () {
+	this.body = yield render('monitor', {});
+});
 
 module.exports = router;

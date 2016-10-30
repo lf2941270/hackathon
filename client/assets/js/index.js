@@ -12,10 +12,11 @@ socket.on('fakeOrder', function (data) {
 			//fake()
 		})
 	}
+
 	fake()
 })
 
-socket.on('order', function(data){
+socket.on('order', function (data) {
 	console.log('order')
 	function uploadCustomerPic() {
 		window.uploadPic().then(function (url) {
@@ -30,10 +31,19 @@ socket.on('order', function(data){
 			})
 		})
 	}
+
 	uploadCustomerPic()
 });
 
-socket.on('identify', function(data){
-	console.log('identify')
-	console.log(data)
+socket.on('identify', function (data) {
+	if (data.type === 'old') {
+		console.log('成功识别到老用户', data)
+	} else {
+		console.log('成功检测到新用户', data)
+	}
 });
+
+
+socket.on('detect', function (data) {
+	console.log('检测失败,没有检测到人脸');
+})

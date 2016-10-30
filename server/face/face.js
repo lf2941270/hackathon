@@ -15,7 +15,6 @@ module.exports = {
 		}, options)
 		return request.post('/identify', options)
 		.then(function (data) {
-			process.socket.emit('identify', data)
 			return data[0].candidates[0]
 		})
 		.catch(function (data) {
