@@ -10,6 +10,17 @@ const apiRouter = require('koa-router')({
 const app = require('../app');
 const face = require('../face');
 const fake = require('../fake/fake')
+var session = require('koa-session');
+app.keys = ['some secret hurr'];
+
+var CONFIG = {
+	key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
+	maxAge: 86400000, /** (number) maxAge in ms (default is 1 days) */
+	overwrite: true, /** (boolean) can overwrite or not (default true) */
+	httpOnly: true, /** (boolean) httpOnly or not (default true) */
+	signed: true, /** (boolean) signed or not (default true) */
+};
+app.use(session(CONFIG, app));
 app.context.cache = {};
 apiRouter.get('/upload_token', function * () {
 
@@ -54,5 +65,14 @@ apiRouter.post('/pic', function *() {
 	console.log('process image : ', this.request.body.url, 'orderId : ', this.request.body.orderId)
 	yield face.process(this.request.body.url, this.request.body.orderId)
 	this.body = 'success'
+})
+
+apiRouter.post('/login', function *() {
+	if(this.request.body.user === 'admin' && this.request.body.password === 'admin') {
+		this.session.login = true;
+		this.body = {status: 'success'}
+	} else {
+		this.body = {error: '账号或密码不正确'}
+	}
 })
 module.exports = apiRouter;

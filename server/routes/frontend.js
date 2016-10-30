@@ -15,7 +15,14 @@ router.get('/test', function * () {
 });
 
 router.get('/', function * () {
-	this.redirect('/camera')
+	if(!this.session.login) {
+		return this.redirect('/login')
+	}
+	this.body = yield render('index', {})
+});
+router.get('/login', function * () {
+
+	this.body = yield render('/login', {})
 });
 
 router.get('/camera', function * () {
@@ -25,5 +32,6 @@ router.get('/camera', function * () {
 router.get('/order', function * () {
 	this.body = yield render('order', {});
 });
+
 
 module.exports = router;
